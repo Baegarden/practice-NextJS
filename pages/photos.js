@@ -6,7 +6,7 @@ import shortid from 'shortid';
 
 const shortKey = require('shortid');
 
-const photos = ({ album }) => {
+const Photos = ({ album }) => {
   const [originPost, setOriginPost] = useState(album);
   const [post, setPost] = useState([]);
   const [page, setPage] = useState(1);
@@ -136,4 +136,4 @@ export const getStaticProps = async () => {
   };
 };
 
-export default photos;
+export default Photos;

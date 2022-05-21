@@ -6,7 +6,7 @@ import Link from 'next/link';
 const isEmail =
   /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
 
-const login = () => {
+const Login = () => {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
 
@@ -48,4 +48,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;
