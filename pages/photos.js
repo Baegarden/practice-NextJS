@@ -49,10 +49,11 @@ const photos = ({ album }) => {
       <Nav navLink="/" navInfo="Logout"></Nav>
       <div className={photosStyles.photosContainer}>
         <h1>Album Application</h1>
-        <ul>
+        <ul className={photosStyles.photos}>
           {post.map(po => (
             <li key={shortKey.generate()}>
               <div
+                className={photosStyles.imageDiv}
                 onClick={e =>
                   window.open(
                     `https://place-hold.it/500/${po.color}?text=Image`
@@ -63,36 +64,50 @@ const photos = ({ album }) => {
                   src={`https://place-hold.it/100/${po.color}?text=Image`}
                   width={100}
                   height={100}
+                  className={photosStyles.image}
                 ></Image>
               </div>
               <div
+                className={photosStyles.titleDiv}
                 onClick={e =>
                   window.open(
                     `https://place-hold.it/500/${po.color}?text=Image`
                   )
                 }
               >
-                <div>
+                <div className={photosStyles.title}>
                   {po.id}. {po.title}
                 </div>
               </div>
-              <div onClick={e => onUpdate(po.id, e)}>Update</div>
-              <div onClick={e => onDelete(po.id, e)}>Delete</div>
+              <div
+                className={photosStyles.update}
+                onClick={e => onUpdate(po.id, e)}
+              >
+                Update
+              </div>
+              <div
+                className={photosStyles.delete}
+                onClick={e => onDelete(po.id, e)}
+              >
+                Delete
+              </div>
             </li>
           ))}
         </ul>
-        <div>
+        <div className={photosStyles.btnContainer}>
           <button
+            className={photosStyles.button}
             onClick={() => {
               page > 1 ? setPage(page - 1) : null;
             }}
           >
             Before
           </button>
-          <span>
+          <span className={photosStyles.pages}>
             {page} / {Math.ceil(originPost.length / 5)}
           </span>
           <button
+            className={photosStyles.button}
             onClick={() => {
               page < Math.ceil(originPost.length / 5)
                 ? setPage(page + 1)
@@ -102,7 +117,9 @@ const photos = ({ album }) => {
             Next
           </button>
         </div>
-        <div onClick={onCreate}>Create</div>
+        <div className={photosStyles.create} onClick={onCreate}>
+          Create
+        </div>
       </div>
     </div>
   );
