@@ -1,7 +1,7 @@
 import Nav from '../components/Nav';
-import photosStyles from '../styles/Photos.module.css';
 import Image from 'next/image';
-import React, { useState, useEffect } from 'react';
+import photosStyles from '../styles/Photos.module.css';
+import React, { useState, useEffect, useRef } from 'react';
 import shortid from 'shortid';
 
 const shortKey = require('shortid');
@@ -13,7 +13,7 @@ const photos = ({ album }) => {
 
   const onCreate = () => {
     const newPost = {
-      uesrId: 1004,
+      userId: localStorage.getItem('id'),
       id: originPost.length + 1,
       title: 'New Post',
       color: parseInt(Math.random() * 0xffffff).toString(16),
@@ -24,7 +24,6 @@ const photos = ({ album }) => {
   const onUpdate = (index, event) => {
     const update = prompt('Enter a new title');
     let array = [...originPost];
-    console.log(update);
     if (update != null) array[index - 1].title = update;
     setOriginPost(array);
   };
@@ -41,7 +40,6 @@ const photos = ({ album }) => {
   useEffect(() => {
     const reversedPost = [...originPost].reverse();
     setPost(reversedPost.slice((page - 1) * 5, (page - 1) * 5 + 5));
-    console.log(originPost);
   }, [page, originPost]);
 
   return (
@@ -124,7 +122,6 @@ const photos = ({ album }) => {
     </div>
   );
 };
-
 export const getStaticProps = async () => {
   const res = await fetch(`https://jsonplaceholder.typicode.com/albums`);
   const album = await res.json();
